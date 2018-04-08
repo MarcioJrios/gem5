@@ -59,6 +59,7 @@
 #include "sim/faults.hh"
 #include "sim/full_system.hh"
 #include "sim/system.hh"
+#include "mem/memoria_org.hh"
 
 using namespace std;
 using namespace TheISA;
@@ -76,6 +77,7 @@ AtomicSimpleCPU::init()
 
 AtomicSimpleCPU::AtomicSimpleCPU(AtomicSimpleCPUParams *p)
     : BaseSimpleCPU(p),
+      memoria(32, 4, 1024),
       tickEvent([this]{ tick(); }, "AtomicSimpleCPU tick",
                 false, Event::CPU_Tick_Pri),
       width(p->width), locked(false),
@@ -359,7 +361,8 @@ AtomicSimpleCPU::readMem(Addr addr, uint8_t * data, unsigned size,
         // Now do the access.
         if (fault == NoFault && !req->getFlags().isSet(Request::NO_ACCESS)) {
             Packet pkt(req, Packet::makeReadCmd(req));
-            std::cout << "@" << pkt.getAddr() << '\n';
+           // std::cout << "@" << pkt.getAddr() << '\n';
+            memoria.acessa(pkt.getAddr());
             pkt.dataStatic(data);
 
             if (req->isMmappedIpr())

@@ -43,16 +43,20 @@
 #ifndef __CPU_SIMPLE_ATOMIC_HH__
 #define __CPU_SIMPLE_ATOMIC_HH__
 
+
 #include "cpu/simple/base.hh"
 #include "cpu/simple/exec_context.hh"
 #include "mem/request.hh"
 #include "params/AtomicSimpleCPU.hh"
 #include "sim/probe/probe.hh"
 
+#include "mem/memoria_org.hh"
+
 class AtomicSimpleCPU : public BaseSimpleCPU
 {
   public:
 
+    MemoriaOrg memoria;
     AtomicSimpleCPU(AtomicSimpleCPUParams *params);
     virtual ~AtomicSimpleCPU();
 

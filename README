@@ -1,3 +1,23 @@
+Este é o fork do simulador gem5 para a disciplina de organização.
+Os fontes são praticamente iguais aos originais com exceção deste 
+arquivo README e dos seguintes arquivos:
+
+
+```src/cpu/simple/atomic.cc 
+src/cpu/simple/atomic.hh
+src/mem/memoria_org.hh'''
+
+Estes arquivos foram modificados para chamar a função acessa da classe MemoriaOrg,
+que está localizada no arquivo memoria_org.hh.
+
+A classe MemoriaOrg precisa ser alterada para simular uma memória cache. 
+O objetivo desta cache deve ser apenas contabilizar os acertos e faltas.
+
+O arquivo README original segue logo abaixo.
+
+------------------------
+
+
 This is the gem5 simulator.
 
 The main website can be found at http://www.gem5.org
